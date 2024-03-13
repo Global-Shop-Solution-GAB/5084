@@ -1,0 +1,652 @@
+Program.Sub.ScreenSU.Start
+Gui.Form..Create
+Gui.Form..Caption("Work Order Comments")
+Gui.Form..Size(20850,11055)
+Gui.Form..MinX(0)
+Gui.Form..MinY(0)
+Gui.Form..Position(0,0)
+Gui.Form..BackColor(-2147483633)
+Gui.Form..MousePointer(0)
+Gui.Form..Event(UnLoad,Form_UnLoad)
+Gui.Form..Sizeable(False)
+Gui.Form.GC.Create(GsGridControl)
+Gui.Form.GC.Size(20955,7575)
+Gui.Form.GC.Position(-120,2805)
+Gui.Form.GC.Anchor(15)
+Gui.Form.GC.Event(RowCellClick,GC_RowCellClick)
+Gui.Form.picGSSLOGO.Create(PictureBox)
+Gui.Form.picGSSLOGO.Size(4125,960)
+Gui.Form.picGSSLOGO.Position(7905,60)
+Gui.Form.frame1.Create(Frame)
+Gui.Form.frame1.Size(4965,1665)
+Gui.Form.frame1.Position(60,60)
+Gui.Form.frame1.Caption("Pre Filter ")
+Gui.Form.startDate.Create(DatePicker)
+Gui.Form.startDate.Size(1635,285)
+Gui.Form.startDate.Position(135,540)
+Gui.Form.startDate.Parent("frame1")
+Gui.Form.endDate.Create(DatePicker)
+Gui.Form.endDate.Size(1650,285)
+Gui.Form.endDate.Position(1995,540)
+Gui.Form.endDate.Parent("frame1")
+Gui.Form.lbl1.Create(Label,"Start",True,585,255,0,165,300,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl1.Parent("frame1")
+Gui.Form.lbl2.Create(Label,"End",True,465,255,0,2100,300,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl2.Parent("frame1")
+Gui.Form.allDates.Create(CheckBox)
+Gui.Form.allDates.Size(1215,360)
+Gui.Form.allDates.Position(3720,495)
+Gui.Form.allDates.Parent("frame1")
+Gui.Form.allDates.Caption("All Dates")
+Gui.Form.Filter.Create(Button)
+Gui.Form.Filter.Size(855,375)
+Gui.Form.Filter.Position(3810,1170)
+Gui.Form.Filter.Parent("frame1")
+Gui.Form.Filter.Caption("Filter")
+Gui.Form.Filter.Event(Click,Filter)
+Gui.Form.txtWO1.Create(TextBox,"",True,1245,300,0,60,1200,True,0,"Arial",8,-2147483643,1)
+Gui.Form.txtWO1.Parent("frame1")
+Gui.Form.txtWO2.Create(TextBox,"",True,1245,300,0,1920,1200,True,0,"Arial",8,-2147483643,1)
+Gui.Form.txtWO2.Parent("frame1")
+Gui.Form.BrswrWO1.Create(Button)
+Gui.Form.BrswrWO1.Size(450,375)
+Gui.Form.BrswrWO1.Position(1365,1170)
+Gui.Form.BrswrWO1.Parent("frame1")
+Gui.Form.BrswrWO1.Caption("^")
+Gui.Form.BrswrWO1.Event(Click,JobBrsr)
+Gui.Form.BrswrWO2.Create(Button)
+Gui.Form.BrswrWO2.Size(450,375)
+Gui.Form.BrswrWO2.Position(3225,1170)
+Gui.Form.BrswrWO2.Parent("frame1")
+Gui.Form.BrswrWO2.Caption("^")
+Gui.Form.BrswrWO2.Event(Click,JobBrsr)
+Gui.Form.lbl7.Create(Label,"Work Order Range:",True,1545,255,0,75,975,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl7.Parent("frame1")
+Gui.Form.frame2.Create(Frame)
+Gui.Form.frame2.Size(1020,1170)
+Gui.Form.frame2.Position(19275,1275)
+Gui.Form.frame2.Caption("Mode")
+Gui.Form.View.Create(Option)
+Gui.Form.View.Size(780,255)
+Gui.Form.View.Position(165,315)
+Gui.Form.View.Parent("frame2")
+Gui.Form.View.Caption("View")
+Gui.Form.edit.Create(Option)
+Gui.Form.edit.Size(720,255)
+Gui.Form.edit.Position(165,675)
+Gui.Form.edit.Parent("frame2")
+Gui.Form.edit.Caption("Edit")
+Gui.Form.frame3.Create(Frame)
+Gui.Form.frame3.Size(5010,945)
+Gui.Form.frame3.Position(30,1815)
+Gui.Form.frame3.Caption("Add Job")
+Gui.Form.Add.Create(Button)
+Gui.Form.Add.Size(855,375)
+Gui.Form.Add.Position(4065,465)
+Gui.Form.Add.Parent("frame3")
+Gui.Form.Add.Caption("Add")
+Gui.Form.Add.Event(Click,Add)
+Gui.Form.JobBrsr.Create(Button)
+Gui.Form.JobBrsr.Size(480,375)
+Gui.Form.JobBrsr.Position(3510,465)
+Gui.Form.JobBrsr.Parent("frame3")
+Gui.Form.JobBrsr.Caption("^")
+Gui.Form.JobBrsr.Event(Click,JobBrsr)
+Gui.Form.Job.Create(TextBox,"",True,1215,300,0,60,495,True,0,"Arial",8,-2147483643,1)
+Gui.Form.Job.Parent("frame3")
+Gui.Form.Suffix.Create(TextBox,"",True,705,300,0,1365,495,True,0,"Arial",8,-2147483643,1)
+Gui.Form.Suffix.Parent("frame3")
+Gui.Form.Seq.Create(TextBox,"",True,1215,300,0,2175,495,True,0,"Arial",8,-2147483643,1)
+Gui.Form.Seq.Parent("frame3")
+Gui.Form.lbl3.Create(Label,"Job",True,465,255,0,75,270,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl3.Parent("frame3")
+Gui.Form.lbl4.Create(Label,"Suffix",True,615,255,0,1380,270,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl4.Parent("frame3")
+Gui.Form.lbl5.Create(Label,"Seq",True,435,255,0,2160,270,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl5.Parent("frame3")
+Gui.Form.frame4.Create(Frame)
+Gui.Form.frame4.Size(1290,855)
+Gui.Form.frame4.Position(17385,285)
+Gui.Form.frame4.Caption("Create Excel")
+Gui.Form.Export.Create(Button)
+Gui.Form.Export.Size(855,375)
+Gui.Form.Export.Position(210,330)
+Gui.Form.Export.Caption("Export")
+Gui.Form.Export.Parent("frame4")
+Gui.Form.Export.Event(Click,Export)
+Gui.Form.frame5.Create(Frame)
+Gui.Form.frame5.Size(1665,1095)
+Gui.Form.frame5.Position(18855,165)
+Gui.Form.frame5.Caption("Refresh")
+Gui.Form.Refresh.Create(CheckBox)
+Gui.Form.Refresh.Size(1380,360)
+Gui.Form.Refresh.Position(150,300)
+Gui.Form.Refresh.Parent("frame5")
+Gui.Form.Refresh.Caption("Auto Refresh")
+Gui.Form.Refresh.Event(Click,Refresh)
+Gui.Form.Minutes.Create(TextBox,"",True,540,300,0,870,675,True,0,"Arial",8,-2147483643,1)
+Gui.Form.Minutes.Parent("frame5")
+Gui.Form.Minutes.NumericOnly(1)
+Gui.Form.lbl6.Create(Label,"Minutes:",True,735,255,0,120,765,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl6.Parent("frame5")
+Gui.Form.timerAutoRefresh.Create(Timer)
+Gui.Form.timerAutoRefresh.Size(500,500)
+Gui.Form.timerAutoRefresh.Position(4365,435)
+Gui.Form.timerAutoRefresh.Event(Timer,timerAutoRefresh_Timer)
+Gui.Form2..Create
+Gui.Form2..Caption("Comments")
+Gui.Form2..Size(4605,4875)
+Gui.Form2..MinX(0)
+Gui.Form2..MinY(0)
+Gui.Form2..Position(0,0)
+Gui.Form2..BackColor(-2147483633)
+Gui.Form2..MousePointer(0)
+Gui.Form2..Event(UnLoad,Form2_UnLoad)
+Gui.Form2.lbl1.Create(Label,"Comments for WO#:",True,1650,255,0,150,240,True,0,"Arial",8,-2147483633,0)
+Gui.Form2.WONumber.Create(TextBox,"",True,1950,300,0,1785,180,False,0,"Arial",8,-2147483643,1)
+Gui.Form2.WONumber.Locked(True)
+Gui.Form2.Comments.Create(TextboxM)
+Gui.Form2.Comments.Size(4350,3360)
+Gui.Form2.Comments.Position(45,555)
+Gui.Form2.Comments.MaxLength(250)
+Gui.Form2.Save.Create(Button)
+Gui.Form2.Save.Size(855,375)
+Gui.Form2.Save.Position(3405,4005)
+Gui.Form2.Save.Caption("Save")
+Gui.Form2.Save.Event(Click,Save)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+V.Global.RowIndex.Declare(String)
+V.Global.SeqComments.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+'DR.H 		'6/15/2018		GCG_5084_WO_Dashboard.g2c
+'This project will create a Work Order Comments Dashboard displaying Comments based on Job, Suffix, Seq.
+'Ranger Die
+Function.ODBC.Connection!con.OpenCompanyConnection(1000000000)
+V.Local..BulkDeclareString(sIcon,sGssLogo)
+F.Intrinsic.String.Build("{0}\GAB\GAS\gss2.ico",V.Caller.PluginsDir,v.Local.sIcon)
+F.Intrinsic.String.Build("{0}\GAB\GAS\GAB_GSS_Logo_Green_Dash.png",V.Caller.PluginsDir,V.Local.sGssLogo)
+Gui.Form..Icon(V.Local.sIcon)
+Gui.Form2..Icon(V.Local.sIcon)
+Gui.Form.picGSSLogo.Picture(V.Local.sGssLogo)	
+
+'check directory
+F.Intrinsic.Control.CallSub(ChkDir)
+'check security
+F.Intrinsic.Control.CallSub(Security)
+'Anchor
+F.Intrinsic.Control.CallSub(Anchor)
+GUI.Form..Show
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+   Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.Security.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+V.Local.bInGroup.Declare(Boolean, False)
+'check security group and set mode to edit or view
+Function.Global.Security.IsInGroup(V.Caller.User, "EDITWOC", V.Local.bInGroup) 
+F.Intrinsic.Control.If(V.Local.bInGroup, =, False)
+	GUI.Form.View.Value(1)
+	GUI.Form.Edit.Value(0)
+F.Intrinsic.Control.Else
+	GUI.Form.View.Value(0)
+	GUI.Form.Edit.Value(1)
+F.Intrinsic.Control.EndIf
+
+Gui.Form.Edit.Enabled(False)
+Gui.Form.View.Enabled(False)
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+   Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.Security.End
+
+Program.Sub.Anchor.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+GUI.Form.GC.Anchor(15)
+Gui.Form.picGSSLogo.Anchor(1)
+Gui.Form.Export.Anchor(9)
+Gui.Form.Frame1.Anchor(5)
+Gui.Form.Frame2.Anchor(9)
+Gui.Form.Frame3.Anchor(5)
+Gui.Form.Frame4.Anchor(9)
+Gui.Form.Frame5.Anchor(9)
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+   Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.Anchor.End
+
+Program.Sub.Form_UnLoad.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+F.Intrinsic.Control.If(V.DataTable.JOB.Exists, =, True)
+	F.Data.DataTable.Close("JOB")
+F.Intrinsic.Control.EndIf
+Gui.Form..Visible(False)
+F.Intrinsic.Control.End
+F.ODBC.Connection!con.Close
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+   Function.Intrinsic.Control.End
+F.Intrinsic.Control.EndTry
+Program.Sub.Form_UnLoad.End
+
+Program.Sub.Filter.Start
+F.Intrinsic.Control.SetErrorHandler("Sub_Err")
+F.Intrinsic.Control.ClearErrors
+V.Local.sError.Declare
+
+V.Local.iC.Declare(Long, 0)
+V.Local.sRet.Declare(String)
+'check they entered a WO range
+F.Intrinsic.Control.If(V.Screen.Form!txtWO1.Text, =, "", "OR", V.Screen.Form!txtWO2.Text, =, "")
+	F.Intrinsic.UI.Msgbox("Enter Work Order And Suffix Range")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+V.Local..BulkDeclareString(sTemp, sStart, sEnd, ssql)
+Function.Intrinsic.UI.InvokeWaitDialog("Loading Data")
+F.Intrinsic.Control.If(V.DataTable.JOB.Exists, =, True)
+	F.Data.DataTable.Close("JOB")
+	F.Data.DataTable.Close("JOB1")
+	F.Data.DataTable.Close("JOB2")
+	F.Data.DataTable.Close("JobNotes")
+	F.Data.DataTable.Close("ModInfo")
+	F.Data.DataTable.Close("JobHeader")
+	F.Data.DataTable.Close("JobHeader1")
+F.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Control.If(V.Screen.Form!allDates.Value, =, 1)
+	F.Intrinsic.String.Build("Select Distinct  Job, Suffix, JOB_Seq, Date As Date1, Text As Comments, Seq  From JOB_DTL_NOTES Where  JOB+'-'+SUFFIX  Between '{0}' AND '{1}'  Order By Job, Suffix, Job_Seq, Seq", V.Screen.Form!txtWO1.Text ,V.Screen.Form!txtWO2.Text, V.Local.ssql)
+F.Intrinsic.Control.Else
+	V.Local.sStart.Set(V.Screen.Form!startDate.Value)
+	V.Local.sEnd.Set(V.Screen.Form!endDate.Value)
+	F.Intrinsic.String.Format(V.Screen.Form!startDate.Value, "YYMMDD", V.Local.sStart)
+	F.Intrinsic.String.Format(V.Screen.Form!endDate.Value, "YYMMDD", V.Local.sEnd)
+	F.Intrinsic.String.Build("Select Distinct Job, Suffix, JOB_Seq, Date As Date1, Text As Comments, Seq  From JOB_DTL_NOTES Where Date1 Between '{0}' AND '{1}' AND JOB+'-'+SUFFIX Between '{2}' AND '{3}'  Order By Job, Suffix, Job_Seq, Seq", V.Local.sStart, V.Local.sEnd,V.Screen.Form!txtWO1.Text ,V.Screen.Form!txtWO2.Text,V.Local.ssql)
+F.Intrinsic.Control.EndIf
+
+F.Data.DataTable.CreateFromSQL("JobNotes", "con", V.Local.ssql, true)
+F.Intrinsic.Control.If(V.DataTable.JobNotes.RowCount, =,0)
+	F.Intrinsic.UI.CloseWaitDialog
+	F.Data.DataTable.Close("JobNotes")
+	F.Intrinsic.UI.Msgbox("No data was returned.")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+F.Data.DataTable.AddExpressionColumn("JobNotes", "Dates", "Date", "Substring(Date1, 3,2)+'/'+Substring(Date1, 5,2)+'/'+'20'+Substring(Date1, 1,2)")
+
+
+
+F.Data.DataTable.CreateFromSQL("JobHeader1", "con", "Select Job, SUFFIX, Description From JOB_HEADER", true)
+F.Data.DataView.Create("JobHeader1", "dvJobHeader1")
+F.Data.DataView.ToDataTableDistinct("JobHeader1", "dvJobHeader1", "JobHeader", "Job*!*SUFFIX*!*Description", True)
+F.Data.DataTable.CreateFromSQL("ModInfo", "con", "Select  Distinct Job, Suffix, Seq, CommentSeq,  ModifiedBy, ModifiedDate,Final From GCG_5084_WO", true)
+
+F.Data.Linq.Join("LeftJoin", "DataTable", "JobNotes*!*N", "DataTable", "ModInfo*!*M","N.Job = M.Job AND N.Suffix = M.Suffix AND N.Job_Seq = M.Seq AND  N.Seq = M.CommentSeq", "DataTable","JOBHEADER*!*JH", "N.Job = JH.Job AND N.Suffix = JH.Suffix","N.Job*!*N.Suffix*!*N.Job_Seq*!*JH.Description*!*N.Dates*!*N.Date1*!*N.Comments*!*N.Seq*!*M.ModifiedBy*!*M.ModifiedDate*!*M.Final",  " " , "", "", "JOB1", true)
+
+F.Data.DataTable.AddColumn("JOB1", "Employee", "String")
+
+'select top 1 employee from job_detail table
+F.Intrinsic.Control.For(V.Local.iC, 0, V.DataTable.JOB1.RowCount--, 1)
+	F.Intrinsic.String.Build("Select Top 1 Employee From JOB_DETAIL Where JOB = '{0}' AND SUFFIX = '{1}' AND SEQ = '{2}' AND Sequence_Key = '{3}' AND DATE_SEQUENCE= '{4}' Order By DATE_SEQUENCE DESC" , V.DataTable.JOB1(V.Local.iC).JOB!FieldVal, V.DataTable.JOB1(V.Local.iC).Suffix!FieldVal, V.DataTable.JOB1(V.Local.iC).JOB_SEQ!FieldVal, V.DataTable.JOB1(V.Local.iC).Seq!FieldVal, V.DataTable.JOB1(V.Local.iC).Date1!FieldVal, V.Local.ssql)
+	F.ODBC.Connection!con.ExecuteAndReturn(V.Local.ssql, V.Local.sRet)
+	F.Data.DataTable.SetValue("JOB1", V.Local.iC, "Employee", V.Local.sRet)
+F.Intrinsic.Control.Next(V.Local.iC)
+F.Data.DataTable.RemoveColumn("JOB1", "Date1")
+'create records in GCG_5084_WO where there are none
+F.Data.DataTable.AddExpressionColumn("JOB1", "Four1","String", " Job+'-'+Suffix+'-'+JOB_Seq+'-'+Seq" )
+F.Data.DataTable.AddColumn("JOB1", "Four2", "String")
+F.Data.Dictionary.CreateFromSQL("dict","con","Select Job+'-'+Suffix+'-'+Seq+'-'+CommentSeq as Four1,  Job+'-'+Suffix+'-'+Seq+'-'+CommentSeq as Four2 From GCG_5084_WO")
+F.Data.Dictionary.SetDefaultReturn("dict", "8")
+F.Data.DataTable.FillFromDictionary("JOB1", "dict", "Four1", "Four2")
+F.Data.Dictionary.Close(dict)
+F.Data.Dataview.Create("JOB1", "JOB1_V1", 22, "Four2 = '8' ", "")
+Function.Data.DataView.ToDataTable("JOB1","JOB1_V1", "JOB2", True)
+F.Data.DataTable.SetValue("JOB2", -1, "Final", False)
+F.Data.DataTable.SaveToDB("JOB2","con", "GCG_5084_WO", "Job*!*Suffix*!*JOB_SEQ*!*Seq*!*Final",128, "JOB@!@JOB*!*Suffix@!@Suffix*!*JOB_SEQ@!@SEQ*!*SEQ@!@CommentSeq*!*Final@!@Final")
+
+F.Data.Dataview.Create("JOB1", "JOB1_V", 22, "", "")
+Function.Data.DataView.ToDataTable("JOB1","JOB1_V", "JOB", True)
+F.Data.DataTable.RemoveColumn("JOB", "Four1")
+F.Data.DataTable.RemoveColumn("JOB", "Four2")
+
+F.Intrinsic.Control.CallSub(Grid)
+
+F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Label("Sub_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: Project",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	Function.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+Program.Sub.Filter.End
+
+Program.Sub.Grid.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+GUI.Form.GC.AddGridViewFromDataTable("Grid", "JOB")
+
+Gui.Form.GC.SetColumnProperty("Grid", "Comments", "AllowEdit",False)
+Gui.Form.GC.SetColumnProperty("Grid", "Comments", "ReadOnly", False)
+Gui.Form.GC.SetColumnProperty("Grid", "Suffix", "AllowEdit",False)
+Gui.Form.GC.SetColumnProperty("Grid", "Suffix", "ReadOnly", False)
+
+Gui.Form.GC.SetColumnProperty("Grid", "Job", "CellForeColor","Blue")
+Gui.Form.GC.SetColumnProperty("Grid", "Suffix", "CellForeColor","Blue")
+
+Gui.Form.GC.SetColumnProperty("Grid", "Dates", "DisplayCustomDatetime", "d")
+Gui.Form.GC.SetColumnProperty("Grid", "ModifiedDate", "DisplayCustomDatetime", "d")
+
+Gui.Form.GC.SetColumnProperty("Grid", "Job", "minWidth", 30)
+Gui.Form.GC.SetColumnProperty("Grid", "Suffix", "minWidth", 30)
+Gui.Form.GC.SetColumnProperty("Grid", "Job_Seq", "minWidth", 30)
+Gui.Form.GC.SetColumnProperty("Grid", "Description", "minWidth", 200)
+Gui.Form.GC.SetColumnProperty("Grid", "Dates", "minWidth",50 )
+Gui.Form.GC.SetColumnProperty("Grid", "Employee", "minWidth",150 )
+Gui.Form.GC.SetColumnProperty("Grid", "Comments", "minWidth", 200)
+Gui.Form.GC.SetColumnProperty("Grid", "ModifiedBy", "minWidth",  200)
+Gui.Form.GC.SetColumnProperty("Grid", "ModifiedDate", "minWidth",  200)
+Gui.Form.GC.SetColumnProperty("Grid", "Final", "minWidth",  30)
+
+Gui.Form.GC.SetColumnProperty("Grid", "ModifiedBy", "Caption",  "ModifiedBy")
+Gui.Form.GC.SetColumnProperty("Grid", "ModifiedDate", "Caption",  "ModifiedDate")
+Gui.Form.GC.SetColumnProperty("Grid", "Job_Seq", "Caption", "Seq")
+
+'N.Job*!*N.Suffix*!*N.Job_Seq*!*JH.Description*!*N.Dates*!*D.Employee*!*N.Comments*!*N.Seq*!*M.ModifiedBy*!*M.ModifiedDate*!*M.Final
+Gui.Form.GC.SetColumnProperty("Grid", "Job", "VisibleIndex", 0)
+Gui.Form.GC.SetColumnProperty("Grid", "Suffix", "VisibleIndex", 1)
+Gui.Form.GC.SetColumnProperty("Grid", "Job_Seq", "VisibleIndex", 2)
+Gui.Form.GC.SetColumnProperty("Grid", "Description", "VisibleIndex", 3)
+Gui.Form.GC.SetColumnProperty("Grid", "Dates", "VisibleIndex",4 )
+Gui.Form.GC.SetColumnProperty("Grid", "Employee", "VisibleIndex",5 )
+Gui.Form.GC.SetColumnProperty("Grid", "Comments", "VisibleIndex", 6)
+Gui.Form.GC.SetColumnProperty("Grid", "Seq", "VisibleIndex", 7)
+Gui.Form.GC.SetColumnProperty("Grid", "ModifiedBy", "VisibleIndex",  8)
+Gui.Form.GC.SetColumnProperty("Grid", "ModifiedDate", "VisibleIndex",  9)
+Gui.Form.GC.SetColumnProperty("Grid", "Final", "VisibleIndex",  10)
+
+
+'lock based on security
+F.Intrinsic.Control.If(V.Screen.Form!View.Value, =, True)
+	Gui.Form2.Save.Enabled(False)
+	Gui.Form2.Comments.Enabled(False)
+	Gui.Form.GC.SetColumnProperty("Grid", "Final", "AllowEdit",False)
+	Gui.Form.GC.SetColumnProperty("Grid", "Final", "ReadOnly", True)
+F.Intrinsic.Control.Else
+	Gui.Form.GC.SetColumnProperty("Grid", "Final", "AllowEdit",False)
+	Gui.Form.GC.SetColumnProperty("Grid", "Final", "ReadOnly", False)
+F.Intrinsic.Control.EndIf
+
+Gui.Form.GC.SetGridViewProperty("Grid", "Enableappearanceoddrow", True)
+GUI.Form.GC.MainView("Grid")
+Function.Intrinsic.UI.CloseWaitDialog
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+   Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.Grid.End
+
+Program.Sub.Export.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+V.Local.sFileExport.Declare
+V.Local.sFileDate.Declare
+V.Local.sFileTime.Declare
+
+Function.Intrinsic.String.Format(V.Ambient.Date, "MMDDYY",  V.Local.sFileDate)
+Function.Intrinsic.String.Format(V.Ambient.Time, "HhNnSsam/pm",  V.Local.sFileTime)
+
+F.Intrinsic.String.Build("{0}\Custom\5084\WorkOrder_Comments_{1}_{2}.xlsx",V.Caller.GlobalDir,  V.Local.sFileDate,V.Local.sFileTime,V.Local.sFileExport)
+Gui.Form.GC.Export(V.Local.sFileExport,"xlsx")
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+   Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.Export.End
+
+Program.Sub.ChkDir.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+V.Local.bExists.Declare(Boolean, False)
+V.Local.sFQP.Declare(String, "")
+'check for directory
+F.Intrinsic.String.Build("{0}\Custom\5084\", V.Caller.GlobalDir, V.Local.sFQP)
+Function.Intrinsic.File.DirExists(V.Local.sFQP, V.Local.bExists)
+
+F.Intrinsic.Control.If(V.Local.bExists, =, True)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+Function.Intrinsic.File.CreateDir(V.Local.sFQP)
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.ChkDir.End
+
+Program.Sub.JobBrsr.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+V.local.sRet.Declare
+V.Local.sTemp.Declare
+Function.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+
+'Function.Intrinsic.UI.Browser("Select a Job or Suffix","con","Select Distinct Job, Suffix, Job_Seq, Seq, Text From JOB_DTL_NOTES Order By Job, Suffix, Job_Seq, Seq","Job*!*Suffix*!*Job_Seq*!*Seq*!*Comments","50*!*50*!*50*!*50*!*100",V.local.sRet)
+
+Function.Intrinsic.UI.Browser("Select a Job or Suffix","con","Select Distinct N.Job,N.Suffix,N.Job_Seq,N.Seq,Q.PART_DESCRIPTION From JOB_DTL_NOTES N Left Join JOB_HEADER Q On N.Job = Q.Job and N.Suffix= Q.Suffix Order By N.Job,N.Suffix,N.Job_Seq,N.Seq","Job*!*Suffix*!*Job_Seq*!*Seq*!*Description","50*!*50*!*50*!*50*!*100",V.local.sRet)
+
+
+F.Intrinsic.Control.If(V.Local.sRet, =, "***CANCEL***")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Split(V.Local.sRet, "*!*", V.Local.sRet)
+
+F.Intrinsic.Control.If(V.Args.CONTROLNAME, =, "BRSWRWO1")
+	F.Intrinsic.String.Build("{0}-{1}", V.Local.sRet(0), V.Local.sRet(1), V.Local.sTemp)
+	GUI.Form.txtWO1.Text(V.Local.sTemp)
+	GUI.Form.txtWO2.Text(V.Local.sTemp)
+F.Intrinsic.Control.ElseIf(V.Args.CONTROLNAME, =, "BRSWRWO2")
+F.Intrinsic.String.Build("{0}-{1}", V.Local.sRet(0), V.Local.sRet(1), V.Local.sTemp)
+	GUI.Form.txtWO2.Text(V.Local.sTemp)
+F.Intrinsic.Control.Else
+	GUI.Form.Job.Text(V.Local.sRet(0))
+	GUI.Form.Suffix.Text(V.Local.sRet(1))
+	GUI.Form.Seq.Text(V.Local.sRet(2))
+	V.Global.SeqComments.Set(V.Local.sRet(3))
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.JobBrsr.End
+
+Program.Sub.Form2_UnLoad.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+Gui.Form2..Visible(False)
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    Function.Intrinsic.Control.End
+F.Intrinsic.Control.EndTry
+Program.Sub.Form2_UnLoad.End
+
+Program.Sub.GC_RowCellClick.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+V.Local.ssql.Declare(String)
+V.Local..BulkDeclareString(sWO,sSuffix,sSeq, sTemp, sComments)
+'grab the row index for insertion after selection
+V.Global.RowIndex.Set(Variable.Args.RowIndex)
+Gui.Form.GC.GetCellValueByColumnName("Grid", "Job", V.Global.RowIndex, V.Local.sWO)
+Gui.Form.GC.GetCellValueByColumnName("Grid", "Suffix", V.Global.RowIndex, V.Local.sSuffix)
+F.Intrinsic.Control.If(Variable.Args.Column, =, "COMMENTS")
+	'set the WO number
+	Gui.Form.GC.GetCellValueByColumnName("Grid", "Job_Seq", V.Global.RowIndex, V.Local.sSeq)
+	F.Intrinsic.String.Build("{0}-{1}-{2}", V.Local.sWO,V.Local.sSuffix,V.Local.sSeq,V.Local.sTemp)
+	Gui.Form2.WONumber.Text(V.Local.sTemp)
+	Gui.Form.GC.GetCellValueByColumnName("Grid", "COMMENTS", V.Global.RowIndex, V.Local.sTemp)
+	GUI.Form2.Comments.Text(V.Local.sTemp)
+	GUI.Form2..Show
+F.Intrinsic.Control.ElseIf(Variable.Args.Column, =, "Job", "OR", Variable.Args.Column, =, "Suffix")
+	F.Intrinsic.String.Build("{0}!*!{1}!*!O", V.Local.sWO,  V.Local.sSuffix,V.Local.sTemp)
+	Function.Global.General.CallWrapperSync("2009", V.Local.sTemp)
+F.Intrinsic.Control.ElseIf(Variable.Args.Column, =, "FINAL")
+	Gui.Form.GC.GetCellValueByColumnName("Grid", "FINAL", V.Global.RowIndex, V.Local.sTemp)
+	F.Intrinsic.Control.If(V.Local.sTemp, =, True)
+		Gui.Form.GC.SetCellValueByColumnName ("Grid", "FINAL", V.Global.RowIndex, False)
+		F.Intrinsic.String.Build("Update GCG_5084_WO Set FINAL = '{0}' Where Job='{1}' And Suffix='{2}' And Seq='{3}' And CommentSEQ='{4}' " ,  0, V.DataTable.JOB(V.Global.RowIndex).Job!FieldVal, V.DataTable.JOB(V.Global.RowIndex).Suffix!FieldVal, V.DataTable.JOB(V.Global.RowIndex).JOB_SEQ!FieldVal, V.DataTable.JOB(V.Global.RowIndex).Seq!FieldVal, V.Local.ssql)
+	F.Intrinsic.Control.Else
+		Gui.Form.GC.SetCellValueByColumnName("Grid", "FINAL", V.Global.RowIndex, True)
+		F.Intrinsic.String.Build("Update GCG_5084_WO Set Final = '{0}' Where Job='{1}' And Suffix='{2}' And Seq='{3}' And CommentSEQ='{4}' " , 1, V.DataTable.JOB(V.Global.RowIndex).Job!FieldVal, V.DataTable.JOB(V.Global.RowIndex).Suffix!FieldVal, V.DataTable.JOB(V.Global.RowIndex).JOB_SEQ!FieldVal, V.DataTable.JOB(V.Global.RowIndex).Seq!FieldVal, V.Local.ssql)
+	F.Intrinsic.Control.EndIf
+
+	F.ODBC.Connection!con.Execute(V.Local.ssql)
+
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.GC_RowCellClick.End
+
+Program.Sub.Save.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+V.Local.ssql.Declare(String)
+Gui.Form.GC.SetCellValueByColumnName ("Grid", "Comments", V.Global.RowIndex, V.Screen.Form2!Comments.Text)
+Gui.Form.GC.SetCellValueByColumnName ("Grid", "ModifiedBy", V.Global.RowIndex, V.Caller.USER)
+Gui.Form.GC.SetCellValueByColumnName ("Grid", "ModifiedDate", V.Global.RowIndex, V.Ambient.Date.PervasiveDate)
+
+Gui.Form2..Visible(False)
+
+F.Intrinsic.String.Build("Update JOB_DTL_NOTES Set TEXT = '{0}' Where Job='{1}' And Suffix='{2}' And JOB_Seq='{3}' And SEQ='{4}' ", V.DataTable.JOB(V.Global.RowIndex).Comments!FieldVal, V.DataTable.JOB(V.Global.RowIndex).Job!FieldVal, V.DataTable.JOB(V.Global.RowIndex).Suffix!FieldVal, V.DataTable.JOB(V.Global.RowIndex).JOB_SEQ!FieldVal, V.DataTable.JOB(V.Global.RowIndex).Seq!FieldVal, V.Local.ssql)
+F.ODBC.Connection!con.Execute(V.Local.ssql)
+F.Intrinsic.String.Build("Update GCG_5084_WO Set ModifiedBy = '{0}', ModifiedDate = '{1}' Where Job='{2}' And Suffix='{3}' And Seq='{4}' And CommentSEQ='{5}' " ,  V.Caller.USER,  V.Ambient.Date.PervasiveDate, V.DataTable.JOB(V.Global.RowIndex).Job!FieldVal, V.DataTable.JOB(V.Global.RowIndex).Suffix!FieldVal, V.DataTable.JOB(V.Global.RowIndex).JOB_SEQ!FieldVal, V.DataTable.JOB(V.Global.RowIndex).Seq!FieldVal, V.Local.ssql)
+F.ODBC.Connection!con.Execute(V.Local.ssql)
+
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.Save.End
+
+Program.Sub.Refresh.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+V.Local.iMinutes.Declare(Float, 0)
+F.Intrinsic.Control.If(V.Screen.Form!Refresh.Value, =, 1)
+	'enable auto refresh
+	Gui.Form.timerAutoRefresh.Enabled(False)
+	F.Intrinsic.Math.Mult(V.Screen.Form!Minutes.Text, 60000, V.Local.iMinutes)
+	Gui.Form.timerAutoRefresh.Interval(V.Local.iMinutes)
+	Gui.Form.timerAutoRefresh.Enabled(True)
+F.Intrinsic.Control.Else
+	'disable auto refresh
+	Gui.Form.timerAutoRefresh.Enabled(False)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.Refresh.End
+
+Program.Sub.timerAutoRefresh_Timer.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+F.Intrinsic.Control.CallSub(Filter)
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.timerAutoRefresh_Timer.End
+
+Program.Sub.Add.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+V.Local.ssql.Declare(String)
+
+F.Intrinsic.Control.If(V.DataTable.Job.Exists, =, False)
+	F.Intrinsic.Control.CallSub(Filter)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Build("Select   Date, Text As Comments From JOB_DTL_NOTES Where Job='{0}' And Suffix='{1}' And JOB_Seq='{2}' And SEQ='{3}'", V.Screen.Form!Job.Text,V.Screen.Form!Suffix.Text,V.Screen.Form!Seq.Text, V.Global.SeqComments,V.Local.ssql)
+F.Data.DataTable.CreateFromSql("Notes", "con", V.Local.ssql)
+F.Data.DataTable.AddExpressionColumn("Notes", "Dates", "Date", "Substring(Date, 3,2)+'/'+Substring(Date, 5,2)+'/'+'20'+Substring(Date, 1,2)")
+
+F.Intrinsic.String.Build("Select  Description, Employee From V_JOB_DETAIL Where Job='{0}' And Suffix='{1}' And Seq='{2}' And Sequence_Key='{3}'", V.Screen.Form!Job.Text,V.Screen.Form!Suffix.Text,V.Screen.Form!Seq.Text, V.Global.SeqComments,V.Local.ssql)
+F.Data.DataTable.CreateFromSql("JDtl", "con", V.Local.ssql)
+
+F.Intrinsic.String.Build("Select ModifiedBy, ModifiedDate,Final From GCG_5084_WO Where Job='{0}' And Suffix='{1}' And Seq='{2}' And CommentSeq='{3}'", V.Screen.Form!Job.Text,V.Screen.Form!Suffix.Text,V.Screen.Form!Seq.Text, V.Global.SeqComments,V.Local.ssql)
+F.Data.DataTable.CreateFromSql("Mod", "con", V.Local.ssql)
+
+F.Intrinsic.Control.If(V.DataTable.Mod.Exists, =, True)
+	F.Data.DataTable.AddRow("JOB","Job", V.Screen.Form!Job.Text, "Suffix", V.Screen.Form!Suffix.Text, "Job_Seq", V.Screen.Form!Seq.Text, "Dates", V.DataTable.Notes(0).Dates!FieldValPervasiveDate, "Comments", V.DataTable.Notes(0).Comments!FieldVal,"ModifiedBy", V.DataTable.Mod(0).ModifiedBy!FieldVal, "ModifiedDate", V.DataTable.Mod(0).ModifiedDate!FieldVal, "Final", V.DataTable.Mod(0).Final!FieldVal)
+
+F.Intrinsic.Control.Else
+	F.Data.DataTable.AddRow("JOB","Job", V.Screen.Form!Job.Text, "Suffix", V.Screen.Form!Suffix.Text, "Job_Seq", V.Screen.Form!Seq.Text, "Dates", V.DataTable.Notes(0).Dates!FieldValPervasiveDate, "Comments", V.DataTable.Notes(0).Comments!FieldVal)
+
+F.Intrinsic.Control.EndIf
+
+F.Data.DataTable.Close("Notes")
+F.Data.DataTable.Close("JDtl")
+F.Data.DataTable.Close("mod")
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    Function.Intrinsic.Control.CallSub(Form_Unload)
+F.Intrinsic.Control.EndTry
+Program.Sub.Add.End
